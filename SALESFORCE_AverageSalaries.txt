@@ -1,0 +1,6 @@
+import pandas as pd
+avg_sal_dept=employee.groupby('department')['salary'].agg('mean').reset_index()
+avg_sal_dept.rename(columns={'salary':AVG_salary'}
+merged_data=pd.merge(employee,avg_sal_dept,on='department',how='inner')
+
+
