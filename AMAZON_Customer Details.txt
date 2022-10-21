@@ -1,0 +1,5 @@
+import pandas as pd
+
+merged_data=pd.merge(customer,orders,left_on='id',right_on='cust_id',how='left')
+data=merged_data[['first_name,'last_name','city','order_details']]
+data.sort_values(by=['first_name,'order_details']]
