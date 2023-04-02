@@ -1,1 +1,1 @@
-# Stratascratch-Python
+# Stratascratch-Python/SQL
