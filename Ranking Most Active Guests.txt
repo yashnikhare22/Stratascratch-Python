@@ -1,0 +1,8 @@
+with data1 as (
+select id_guest,sum(n_messages) over(partition by id_guest) as cnt from airbnb_contacts 
+ order by id_guest),
+ data2 as (
+select dense_rank() over(order by cnt desc) as ranking,id_guest,cnt as sum_n_messages,
+row_number() over(partition by id_guest) as rn
+from data1)
+select ranking,id_guest,sum_n_messages from data2 where rn=1 order by ranking
