@@ -1,0 +1,8 @@
+with data as (
+select host_id,guest_id,row_number() over(partition by host_id,guest_id)
+as cnt from airbnb_hosts ah join airbnb_guests ag
+on ah.gender=ag.gender and ah.nationality=ag.nationality
+group by host_id,guest_id
+)
+
+select host_id,guest_id from data where cnt=1
