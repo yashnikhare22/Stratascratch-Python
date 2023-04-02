@@ -1,0 +1,10 @@
+with data1 as (
+select distinct(host_id),nationality from airbnb_hosts where age<30
+),
+data2 as (
+select *,
+row_number() over(partition by d1.host_id) as rn
+from data1 d1 join airbnb_units au on d1.host_id=au.host_id where unit_type='Apartment')
+select distinct(nationality),cnt from (
+select (nationality),count(unit_id) over(partition by nationality) as cnt
+from data2 ) x order by x.cnt desc
