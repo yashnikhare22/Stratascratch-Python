@@ -1,0 +1,1 @@
+select location,avg(popularity) from (select * from facebook_employees fe join facebook_hack_survey fh on fe.id=fh.employee_id) x group by x.location
