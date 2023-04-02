@@ -1,0 +1,9 @@
+with data1 as (
+select max(salary) as max_sal from db_employee de join db_dept dd on de.department_id
+=dd.id where department='marketing'
+union 
+select max(salary) as max_sal from db_employee de join db_dept dd on de.department_id
+=dd.id where department='engineering' )
+select * from (
+select abs(max_sal - lead(max_sal) over()) as nxt from data1)x
+where x.nxt is not null
