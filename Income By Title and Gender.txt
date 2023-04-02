@@ -1,0 +1,8 @@
+with data1 as (
+select worker_ref_id,sum(bonus) as tot_bonus from sf_bonus group by worker_ref_id
+),
+data2 as (
+select employee_title,sex,avg(salary+tot_bonus) from sf_employee se join data1 d1 on
+se.id=d1.worker_ref_id group by employee_title,sex
+)
+select * from data2
