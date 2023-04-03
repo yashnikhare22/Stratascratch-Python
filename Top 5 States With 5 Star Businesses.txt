@@ -1,0 +1,7 @@
+with data1 as (
+select state,count(state) as cnt from yelp_business where stars=5 group by state
+order by cnt desc)
+
+select state, cnt from (
+select *,dense_rank() over(order by cnt desc) as rnk from data1) x
+where x.rnk<5
