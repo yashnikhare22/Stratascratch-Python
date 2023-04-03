@@ -1,0 +1,2 @@
+select name,sum(review_count) as cnt from yelp_business group by name order by cnt desc
+limit 5
