@@ -1,0 +1,6 @@
+with data1 as (
+select type,sum(case when processed='TRUE' then 1 else 0 end ) over(partition by type) as cnt,
+count(processed) over(partition by type) as cnt1,
+row_number() over(partition by type) as rn
+from facebook_complaints)
+select type,(cnt*1.0/cnt1*1.0) as processed_rate from data1 where rn=1
