@@ -1,0 +1,7 @@
+with data1 as (
+select sum(case when lower(contents) like '%bull%' then 1 else 0 end) over() as bull_entry,
+sum(case when lower(contents) like '%bear%' then 1 else 0 end) over() as bear_entry
+from google_file_store limit 1)
+select 'bull' as word,bull_entry as nentry from data1
+union all
+select 'bear' as word, bear_entry as nentry from data1
