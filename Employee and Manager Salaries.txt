@@ -1,0 +1,5 @@
+with data1 as (
+select e.first_name as employee_name,e.id as emp_id,e.salary as emp_sal,e.manager_id,m.salary as man_sal
+from employee e join employee m on e.manager_id=m.id )
+
+select employee_name,emp_sal from data1 where emp_sal>man_sal
