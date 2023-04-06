@@ -1,0 +1,5 @@
+with data1 as (
+select year_rank,group_name,song_name,row_number() over(partition by song_name) as rn
+from billboard_top_100_year_end where year=2010)
+select year_rank,group_name,song_name from data1 where rn=1 and year_rank<=10
+order by year_rank 
